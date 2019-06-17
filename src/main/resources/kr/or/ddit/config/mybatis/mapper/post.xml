@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+
+	<select id="getAllPost" parameterType="int" resultType="postVO">
+		select 	post_id, board_id, userId, NVL(post_parent, 0) post_parent, post_title, post_content, post_dt, post_use
+		from post
+		where board_id = #{board_id}
+	</select>
+	
+	<insert id="insertPost" parameterType="postVO">
+		insert into post
+		values (post_seq.nextval, #{board_id}, #{userId},
+		<choose>
+			<when test="post_parent==0">
+				null,
+			</when>
+			<otherwise>
+				#{post_parent},
+			</otherwise>
+		</choose>
+		#{post_title}, #{post_content}, sysdate, 'Y', null)
+	</insert>
+	
+	<update id="groupSeq" parameterType="postVO">
+		update	post
+		set		group_seq = #{group_seq}
+		where	post_id = #{post_id}
+	</update>
+	
+	<update id="updatePost" parameterType="postVO">
+		update  post
+		set     post_title = #{post_title}, post_content = #{post_content}
+		where   post_id = #{post_id}
+	</update>
+	
+	<select id="getPost" parameterType="int" resultType="postVO">
+		select 	post_id, board_id, userId, NVL(post_parent, 0) post_parent, post_title, post_content, post_dt, post_use, group_seq
+		from 	post
+		where   post_id = #{post_id}
+	</select>
+	
+	<select id="postPagingList" parameterType="map" resultType="postVO">
+		select b.*
+		from
+		(select a.*, rownum rn
+		from
+		(select  p.post_id, p.post_parent, lpad(' ', (level-1)*2) || p.post_title post_title, p.userid, p.post_dt, p.post_use, level lv
+		from    post p
+		where   p.board_id = #{board_id}
+		start with post_parent is null
+		connect by prior post_id = post_parent
+		order siblings by group_seq desc, post_id asc) a ) b
+		where b.rn &gt;= (#{page}-1)*#{pageSize}+1 and b.rn &lt;= #{page}*#{pageSize}
+	</select>
+	
+	<select id="postCnt" resultType="int">
+		select	count(*)
+		from	post
+		where   board_id = #{board_id}
+	</select>
+	
+	<select id="findMax" resultType="int">
+		select  max(post_id)
+		from    post
+	</select>
+	
+	<update id="deletePost" parameterType="int">
+		update	post
+		set		post_use = 'N'
+		where	post_id = #{post_id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myfile">
+	
+	<insert id="insertMyfile" parameterType="myfileVO">
+		insert into myfile
+		values (file_seq.nextval, #{post_id}, #{myfile_path}, #{myfile_name})
+	</insert>
+	
+	<select id="getMyfile" parameterType="int" resultType="myfileVO">
+		select	*
+		from	myfile
+		where	post_id = #{post_id}
+	</select>
+	
+	<select id="getFile" parameterType="int" resultType="myfileVO">
+		select	*
+		from	myfile
+		where	myfile_id = #{myfile_id}
+	</select>
+	
+	<delete id="deleteFile" parameterType="int">
+		delete	
+		from	myfile
+		where	myfile_id = #{myfile_id}
+	</delete>
+	
+</mapper>

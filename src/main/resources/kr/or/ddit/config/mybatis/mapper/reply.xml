@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	
+	<insert id="insertReply" parameterType="replyVO">
+		insert into reply
+		values (reply_seq.nextval, #{post_id}, #{userId}, #{reply_content}, sysdate, 'Y')
+	</insert>
+	
+	<update id="deleteReply" parameterType="int">
+		update	reply
+		set		reply_use = 'N'
+		where	reply_id = #{reply_id}
+	</update>
+	
+	<select id="getReplyList" parameterType="int" resultType="replyVO">
+		select	/*+ INDEX(REPLY PK_REPLY) */ *
+		from	reply
+		where	post_id = #{post_id}
+		order by reply_dt
+	</select>
+
+</mapper>
