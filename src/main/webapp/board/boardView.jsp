@@ -57,7 +57,7 @@
 					<div class="row">
 						<div class="col-sm-8 blog-main">
 							<h2 class="sub-header">${boardVO.board_name}</h2>
-							<form id="frm" action="${cp}/postInfo" method="get">
+							<form id="frm" action="${pageContext.request.contextPath}/postInfo" method="get">
 								<input type="hidden" id="postid" name="postid"/>
 								<input type="hidden" id="boardid" name="boardid"/>
 							</form>
@@ -99,7 +99,7 @@
 										</c:forEach>
 								</table>
 							</div>
-							<a href="${cp}/insertPost?board_id=${board_id}" 
+							<a href="${pageContext.request.contextPath}/insertPost?board_id=${board_id}" 
 								class="btn btn-default pull-right">새글 등록</a>
 								
 							<div class="text-center">
@@ -111,7 +111,7 @@
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp}/boardView?
+												<a href="${pageContext.request.contextPath}/boardView?
 												page=1&pageSize=${pageSize}&board_id=${board_id}">
 												<span>＜＜</span></a>
 											</li>
@@ -124,7 +124,7 @@
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp}/boardView?
+												<a href="${pageContext.request.contextPath}/boardView?
 												page=${page-1}&pageSize=${pageSize}&board_id=${board_id}">
 												<span>＜</span></a>
 											</li>
@@ -140,7 +140,7 @@
 											</c:when>
 											<c:otherwise>
 												<li>
-													<a href="${cp}/boardView?page=${i}
+													<a href="${pageContext.request.contextPath}/boardView?page=${i}
 													&pageSize=${pageSize}&board_id=${board_id}">${i}</a>
 												</li>
 											</c:otherwise>
@@ -153,7 +153,7 @@
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp}/boardView?
+												<a href="${pageContext.request.contextPath}/boardView?
 												page=${page+1}&pageSize=${pageSize}&board_id=${board_id}">
 												<span>＞</span></a>
 											</li>
@@ -166,7 +166,7 @@
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp}/boardView?
+												<a href="${pageContext.request.contextPath}/boardView?
 												page=${paginationSize}&pageSize=${pageSize}&board_id=${board_id}">
 												<span>＞＞</span></a>
 											</li>

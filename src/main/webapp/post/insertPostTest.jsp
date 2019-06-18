@@ -24,7 +24,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script src="${cp}/SE2/js/HuskyEZCreator.js"></script>
+<script src="${pageContext.request.contextPath}/SE2/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
 
@@ -35,10 +35,10 @@ $(document).ready(function() {
 	}
 	
 	if($("#right").val() == "update") {
-		$("#frm").attr("action", "${cp}/updatePost");
+		$("#frm").attr("action", "${pageContext.request.contextPath}/updatePost");
 		$("#titleRight").text("글 수정");
 	}else if($("#right").val() == "rePost") {
-		$("#frm").attr("action", "${cp}/insertRePost");
+		$("#frm").attr("action", "${pageContext.request.contextPath}/insertRePost");
 		$("#titleRight").text("답글 등록");
 	}
 	
@@ -46,7 +46,7 @@ $(document).ready(function() {
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef : oEditors, // 전역변수 명과 동일해야 함.
 		elPlaceHolder : "smarteditor", // 에디터가 그려질 textarea ID 값과 동일 해야 함.
-		sSkinURI : "${cp}/SE2/SmartEditor2Skin.html", // Editor HTML
+		sSkinURI : "${pageContext.request.contextPath}/SE2/SmartEditor2Skin.html", // Editor HTML
 		fCreator : "createSEditor2", // SE2BasicCreator.js 메소드명이니 변경 금지 X
 		htParams : {
 			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -137,13 +137,13 @@ function validation(){
 					<div class="col-sm-10 blog-main">
 						<h2 id="titleRight" class="sub-header">새글 등록</h2>
 					
-							<form id="userFrm" action="${cp}/login" method="get">
+							<form id="userFrm" action="${pageContext.request.contextPath}/login" method="get">
 								<c:if test="${USER_INFO == null}">
 									<input id="userInput" type="hidden" value="no"/>
 								</c:if>
 							</form>
 					
-						<form action="${cp}/insertPost" 
+						<form action="${pageContext.request.contextPath}/insertPost" 
 								method="post" id="frm" enctype="multipart/form-data">
 							<input type="text" class="form-control" id="title" 
 									name="title" value="${post_title}" placeholder="제목"/>

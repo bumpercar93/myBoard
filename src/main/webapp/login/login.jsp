@@ -14,20 +14,20 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${cp}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="${cp}/css/signin.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="${cp}/js/js.cookie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
 	
   </head>
 
   <body>
 
     <div class="container">
-      <form id="frm" class="form-signin" action="${cp}/login" method="post">
+      <form id="frm" class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         
         <label for="userId" class="sr-only">User ID</label>

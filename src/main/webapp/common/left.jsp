@@ -5,11 +5,11 @@
 
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
-		<li class="active"><a href="${cp}/boardSetting">게시판 관리</a></li>
+		<li class="active"><a href="${pageContext.request.contextPath}/boardSetting">게시판 관리</a></li>
 		
 		<c:forEach items="${BOARD_LIST}" var="boardVO">
 			<c:if test="${boardVO.board_use == 'Y'}">
-				<li class="active"><a href="${cp}/boardView?board_id=${boardVO.board_id}">
+				<li class="active"><a href="${pageContext.request.contextPath}/boardView?board_id=${boardVO.board_id}">
 									${boardVO.board_name}</a></li>
 			</c:if>
 		</c:forEach>

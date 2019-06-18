@@ -13,7 +13,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${cp}/login">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/login">
 				<c:choose>
 					<c:when test="${USER_INFO == null}">
 						접속하지 않은 사용자 입니다
@@ -30,7 +30,7 @@
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Profile</a></li>
-				<li><a href="${cp}/logout">Logout</a></li>
+				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

@@ -70,13 +70,13 @@
 						<div class="col-sm-8 blog-main">
 							<h2 class="sub-header">게시판 관리</h2>
 							
-							<form id="userFrm" action="${cp}/login" method="get">
+							<form id="userFrm" action="${pageContext.request.contextPath}/login" method="get">
 								<c:if test="${USER_INFO == null}">
 									<input id="userInput" type="hidden" value="no"/>
 								</c:if>
 							</form>
 							
-							<form id="frm" action="${cp}/boardSetting" method="post">
+							<form id="frm" action="${pageContext.request.contextPath}/boardSetting" method="post">
 								<input type="hidden" id="insertOrModify" name="insertOrModify"/>
 								<input type="hidden" id="modifyName" name="modifyName"/>
 								<input type="hidden" id="modifyUse" name="modifyUse"/>

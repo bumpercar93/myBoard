@@ -85,7 +85,7 @@
 			$("#postid").val(postid);
 			var boardid = $(this).data("boardid");
 			$("#boardid").val(boardid);
-			$("#frm").attr("action", "${cp}/deleteReply");
+			$("#frm").attr("action", "${pageContext.request.contextPath}/deleteReply");
 			$("#frm").submit();
 		});
 		
@@ -94,7 +94,7 @@
 			$("#postid").val(postid);
 			var boardid = $(this).data("boardid");
 			$("#boardid").val(boardid);
-			$("#frm").attr("action", "${cp}/deletePost");
+			$("#frm").attr("action", "${pageContext.request.contextPath}/deletePost");
 			$("#frm").submit();
 		});
 		
@@ -108,7 +108,7 @@
 			var content = $("#contentLa").html();
 			$("#post_content").val(content);
 			$("#frm").attr("method", "get");
-			$("#frm").attr("action", "${cp}/insertPost");
+			$("#frm").attr("action", "${pageContext.request.contextPath}/insertPost");
 			$("#frm").submit();
 		});
 		
@@ -119,7 +119,7 @@
 			$("#postid").val(postid);
 			
 			$("#frm").attr("method", "get");
-			$("#frm").attr("action", "${cp}/insertRePost");
+			$("#frm").attr("action", "${pageContext.request.contextPath}/insertRePost");
 			$("#frm").submit();
 		});
 		
@@ -142,14 +142,14 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">${postVO.post_title}</h2>
 						
-						<form id="userFrm" action="${cp}/login" method="get">
+						<form id="userFrm" action="${pageContext.request.contextPath}/login" method="get">
 							<c:if test="${USER_INFO == null}">
 								<input id="userInput" type="hidden" value="no"/>
 							</c:if>
 						</form>
 						
 						<form id="frm" class="form-horizontal" role="form" method="post"
-								action="${cp}/postInfo">
+								action="${pageContext.request.contextPath}/postInfo">
 							
 							<input type="hidden" id="postid" name="postid" />
 							<input type="hidden" id="boardid" name="boardid" />
@@ -174,7 +174,7 @@
 								<label for="userNm" class="col-sm-2 control-label">첨부파일</label>
 								<div class="col-sm-10">
 									<c:forEach items="${myfileList}" var="myfileVO">
-											<a href="${cp}
+											<a href="${pageContext.request.contextPath}
 											/fileDownload?myfile_id=${myfileVO.myfile_id}"> 
 											${myfileVO.myfile_name}</a><br>
 									</c:forEach>
